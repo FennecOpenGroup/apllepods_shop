@@ -192,6 +192,7 @@ ${a}
                   <div
                     id={block}
                     className={border[0]}
+                    style={{ display: "flex", alignItems: "center" }}
                     onClick={() => {
                       console.log(border);
                       if (border[0] != "border")
@@ -215,6 +216,7 @@ ${a}
                   <div
                     id={block}
                     className={border[1]}
+                    style={{ display: "flex", alignItems: "center" }}
                     onClick={() => {
                       console.log(border);
                       if (border[1] != "border")
@@ -238,6 +240,7 @@ ${a}
                   <div
                     id={block}
                     className={border[2]}
+                    style={{ display: "flex", alignItems: "center" }}
                     onClick={() => {
                       if (border[2] != "border")
                         setBorder([

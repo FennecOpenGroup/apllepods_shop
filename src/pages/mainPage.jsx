@@ -14,7 +14,6 @@ const OurProducts = lazy(() => import("../components/ourProducts.jsx"));
 window.GlobalSale = 0;
 window.GlobalPost = "сдэк";
 const tg = window.Telegram.WebApp;
-
 const id = tg.initDataUnsafe.user ? tg.initDataUnsafe.user.id : null;
 fetch("https://pop.applepodsblack.ru/api/carts")
   .then((response) => response.json())
@@ -56,7 +55,9 @@ function MainPage() {
       <Suspense fallback={<div></div>}>
         <ProfileTgLink />
       </Suspense>
-      <div style={{margin:'16px'}}><TeletypeCarousel /></div>
+      <div style={{ margin: "16px" }}>
+        <TeletypeCarousel />
+      </div>
       <Suspense fallback={<div></div>}>
         <QuadroBlocks />
       </Suspense>
