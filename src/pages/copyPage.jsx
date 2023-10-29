@@ -5,8 +5,10 @@ function CopyPage() {
   return (
     <div id="copy">
       <div>
-        <p id="header_copy">Детали вашего заказа:</p>
-        <p>
+        <p id="header_copy" style={{ paddingBottom: "10px" }}>
+          Детали вашего заказа:
+        </p>
+        <p style={{ lineHeight: "25px", letterSpacing: "0px" }}>
           Проверьте введенные данные. После нажатия на кнопку подтвердить данные
           будут автоматически скопированы в буфер обмена, как только вы будете
           перенаправлены в чат с менеджером вставьте скопированное и отправьте
@@ -17,7 +19,12 @@ function CopyPage() {
         id="details"
         defaultValue={window.GlobalDetails}
         className="gray_input"
-        style={{height:'auto', minHeight:'250px'}}
+        style={{
+          height: "auto",
+          minHeight: "260px",
+          padding: "10px",
+          resize: "none",
+        }}
       ></textarea>
 
       <a
@@ -35,7 +42,7 @@ function CopyPage() {
         style={{
           borderRadius: "16px",
           border: "2px solid var(--Yellow-gradient, #f5ea99)",
-          height:'400px'
+          height: "400px",
         }}
         preload="auto"
         controls={true}

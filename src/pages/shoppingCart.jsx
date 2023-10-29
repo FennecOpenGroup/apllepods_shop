@@ -71,9 +71,9 @@ function ShoppingCart() {
         let colors = window.GlobalProductColors;
         let cart_names = [];
         for (let i = 0; i < window.GlobalShoppingCart.length; i++) {
-          let product = '';
-          for (let elem of data){
-            if (elem.id  == store[i]) product = elem;
+          let product = "";
+          for (let elem of data) {
+            if (elem.id == store[i]) product = elem;
           }
           buffer.set(
             <div className="cart_card">
@@ -82,6 +82,7 @@ function ShoppingCart() {
                   "https://pop.applepodsblack.ru/" +
                   product.attributes.main_photo.data.attributes.url
                 }
+                style={{ objectFit: "cover" }}
                 className="cart_card_img"
               />
               <div className="info_cart_card">

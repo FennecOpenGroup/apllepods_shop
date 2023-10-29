@@ -44,6 +44,11 @@
 ::-webkit-scrollbar {
   display: none;
 }
+
+*:focus {
+  outline: none;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1269,6 +1274,11 @@ button[disabled] {
   min-height: 100vh;
   justify-content: center;
 }
+
+.special-label {
+  display: none;
+}
+
 .gray_input {
   padding: 11px 16px 11px 0px;
   border-radius: 16px;
@@ -1601,7 +1611,7 @@ audio {
   top: 0;
   left: 0;
 }
-#video_story_back{
+#video_story_back {
   position: fixed;
   background: transparent;
   top: 0;
@@ -1611,17 +1621,13 @@ audio {
   flex-direction: column;
   width: 100%;
   align-items: center;
-
-
-
 }
-#video_story_close{
+#video_story_close {
   position: absolute;
   bottom: 16px;
   width: 40px;
   height: 40px;
   z-index: 99999;
-
 }
 #story_video > p {
   position: absolute;

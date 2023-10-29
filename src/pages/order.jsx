@@ -6,6 +6,7 @@ import russian_post from "./../images/russianPost.svg";
 import apple from "./../images/gold_apple.svg";
 import { FormControl } from "@chakra-ui/react";
 import { SwiperSlide, Swiper } from "swiper/react";
+import PhoneInput from "react-phone-input-2";
 import "swiper/css";
 import "swiper/css/free-mode";
 import { FreeMode } from "swiper/modules";
@@ -22,6 +23,7 @@ function OformitPage() {
   ]);
   const { height, width } = useWindowDimensions();
   const [block, setBlock] = useState("cdek");
+  const [number, setNumber] = useState("");
 
   const FormSchema = yup.object().shape({
     last_name: yup.string().required("Обязательное поле"),
@@ -35,7 +37,7 @@ function OformitPage() {
   const handle_submit = (values) => {
     let last_name = values.last_name;
     let first_name = values.first_name;
-    let phone = values.phone;
+    let phone = number;
     let pochta = "сдэк";
     let name = values.adress;
     let result = "";
@@ -43,8 +45,7 @@ function OformitPage() {
     for (let i = 0; i < window.GlobalProductColors.length; i++) {
       a += `название ${window.GlobalCartNames[i]}  цвета ${window.GlobalProductColors[i]} \n`;
     }
-    result = 
-`Здравствуйте , хочу сделать заказ! 
+    result = `Здравствуйте , хочу сделать заказ! 
 Мои данные для заказа:
 ФИО: ${first_name} ${last_name}
 ТЕЛЕФОН: ${phone}
@@ -148,10 +149,28 @@ ${a}
                     isRequired
                     isInvalid={!!form.values.phone && !!form.errors.phone}
                   >
-                    <input
+                    <PhoneInput
+                      country="ru"
                       {...field}
+                      inputStyle={{
+                        color: "white",
+                        backgroundColor: "transparent",
+                        width: "100%",
+                        height: "40px",
+                      }}
+                      dropdownStyle={{
+                        color: "gray",
+                        backgroundColor: "#1a1a1a",
+                        colorScheme: "dark",
+                      }}
+                      buttonStyle={{
+                        backgroundColor: "transparent",
+                      }}
+                      value={number}
+                      onChange={(event) => setNumber(event)}
                       placeholder="Номер телефона"
                       className="gray_input"
+                      style={{ padding: "5px 0px" }}
                       type="number"
                       id="phone"
                       w="100%"
@@ -275,13 +294,13 @@ ${a}
                   disabled={
                     !formik.values.last_name ||
                     !formik.values.first_name ||
-                    !formik.values.phone ||
+                    !number ||
                     !formik.values.adress ||
                     !!formik.errors.last_name ||
                     !!formik.errors.first_name ||
-                    !!formik.errors.phone ||
                     !!formik.errors.adress
                   }
+                  style={{ width: "100%" }}
                 >
                   Оформить заказ
                 </button>
