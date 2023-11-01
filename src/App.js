@@ -2,6 +2,7 @@ import { createMemoryRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import MainPage from "./pages/mainPage";
 import ProductPage from "./pages/productPage";
+import MailtypePage from "./pages/mailtypePage";
 import ShoppingCart from "./pages/shoppingCart";
 import OrderPage from "./pages/order";
 import CopyPage from "./pages/copyPage";
@@ -46,18 +47,23 @@ const router = createMemoryRouter([
     element: <MainPage />,
     errorElement: <MainPage />,
   },
+  {
+    path: "/mailtype",
+    element: <MailtypePage />,
+    errorElement: <MainPage />,
+  },
 ]);
 function App() {
   const tg = window.Telegram.WebApp;
   tg.enableClosingConfirmation();
   tg.expand();
   useEffect(() => {
-    if (!(tg.isExpanded)) tg.expand();
+    if (!tg.isExpanded) tg.expand();
   });
-  function big(){
+  function big() {
     tg.expand();
   }
-  tg.onEvent('viewportChanged', big);
+  tg.onEvent("viewportChanged", big);
   return (
     <ChakraBaseProvider>
       <RouterProvider router={router} />

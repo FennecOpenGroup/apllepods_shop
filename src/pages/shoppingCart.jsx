@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import delete_cart from "./../images/delete_cart.svg";
 
@@ -15,7 +14,6 @@ function ShoppingCart() {
   );
   const [sale_sum, setSaleSum] = useState(0);
   const [summary, setSummary] = useState(0);
-  const [enough, setEnough] = useState(true);
   const tg = window.Telegram.WebApp;
   const id = tg.initDataUnsafe.user ? tg.initDataUnsafe.user.id : null;
   const backButton = tg.BackButton;
@@ -38,9 +36,6 @@ function ShoppingCart() {
     window.GlobalProductColors.splice(ind, 1);
     setCart(cart_arr);
   }
-  useEffect(() => {
-    window.GlobalShoppingCart != [] ? setEnough(false) : setEnough(true);
-  }, [cart]);
   function deleteSum(ind, arr, current) {
     console.log(ind);
     console.log(current);
@@ -200,10 +195,10 @@ function ShoppingCart() {
         <button
           className="gold_button order_butt"
           style={{ width: "100%" }}
-          disabled={enough}
+          // disabled={window.GlobalShoppingCart != []}
           onClick={() => {
             window.GlobalSum = summary;
-            navigate("/order");
+            navigate("/mailtype");
           }}
         >
           Оформить заказ

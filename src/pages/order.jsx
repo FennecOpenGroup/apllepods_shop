@@ -1,27 +1,16 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import useWindowDimensions from "../components/GetDimensions";
-import cdek from "./../images/cdek.svg";
-import russian_post from "./../images/russianPost.svg";
-import apple from "./../images/gold_apple.svg";
 import { FormControl } from "@chakra-ui/react";
-import { SwiperSlide, Swiper } from "swiper/react";
 import PhoneInput from "react-phone-input-2";
 import "swiper/css";
 import "swiper/css/free-mode";
-import { FreeMode } from "swiper/modules";
 import { Formik, Form, Field } from "formik";
 import { useEffect } from "react";
 import * as yup from "yup";
 
 function OformitPage() {
-  const [border, setBorder] = useState([
-    "no_border",
-    "no_border",
-    "no_border",
-    "no_border",
-  ]);
-  const { height, width } = useWindowDimensions();
+  const { width } = useWindowDimensions();
   const [block, setBlock] = useState("cdek");
   const [number, setNumber] = useState("");
 
@@ -183,89 +172,26 @@ ${a}
                   </FormControl>
                 )}
               </Field>
-              <Swiper
-                slidesPerView={3}
-                modules={[FreeMode]}
-                style={{ padding: "10px 0px" }}
-              >
-                <SwiperSlide>
-                  <div
-                    id={block}
-                    className={border[0]}
-                    style={{ display: "flex", alignItems: "center" }}
-                    onClick={() => {
-                      console.log(border);
-                      if (border[0] != "border")
-                        setBorder([
-                          "border",
-                          "no_border",
-                          "no_border",
-                          "no_border",
-                        ]);
-                      window.GlobalPost = "сдэк";
-                    }}
-                  >
-                    <p>СДЭК</p>
-                    <img
-                      src={cdek}
-                      style={{ width: "90px", height: "30px" }}
-                    ></img>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div
-                    id={block}
-                    className={border[1]}
-                    style={{ display: "flex", alignItems: "center" }}
-                    onClick={() => {
-                      console.log(border);
-                      if (border[1] != "border")
-                        setBorder([
-                          "no_border",
-                          "border",
-                          "no_border",
-                          "no_border",
-                        ]);
-                      window.GlobalPost = "почта России";
-                    }}
-                  >
-                    <p>Почта России</p>
-                    <img
-                      src={russian_post}
-                      style={{ width: "90px", height: "30px" }}
-                    ></img>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div
-                    id={block}
-                    className={border[2]}
-                    style={{ display: "flex", alignItems: "center" }}
-                    onClick={() => {
-                      if (border[2] != "border")
-                        setBorder([
-                          "no_border",
-                          "no_border",
-                          "border",
-                          "no_border",
-                        ]);
-                      window.GlobalPost = "почта по миру";
-                    }}
-                  >
-                    <p>Почта по миру</p>
-                    <img
-                      src={apple}
-                      style={{ width: "90px", height: "30px" }}
-                    ></img>
-                  </div>
-                </SwiperSlide>
-              </Swiper>
-              <p style={{ padding: "0px" }}>Выберите пункт доставки</p>
+              {window.GlobalPost === "сдэк" ? (
+                <p style={{ padding: "0px", marginTop: "15px" }}>
+                  Выберите пункт выдачи Сдек
+                </p>
+              ) : window.GlobalPost === "почта России" ? (
+                <p style={{ padding: "0px", marginTop: "15px" }}>
+                  Введите ваш адрес и индекс
+                </p>
+              ) : (
+                <p style={{ padding: "0px", marginTop: "15px" }}>
+                  Введите полный адрес с индексом, ЗАПОЛНЯТЬ ЛАТИНИЦЕЙ
+                </p>
+              )}
+
               <Field name="adress">
                 {({ field, form }) => (
                   <FormControl
                     isRequired
                     isInvalid={!!form.values.adress && !!form.errors.adress}
+                    maxH="350px"
                   >
                     <input
                       {...field}

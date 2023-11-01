@@ -322,6 +322,7 @@
   letter-spacing: -0.5px;
 }
 .gray_block {
+  max-width: 180px;
   display: flex;
   height: 120px;
   padding: 16px;
@@ -369,6 +370,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0px;
 }
 
 .quadro_blocks_main {
@@ -378,6 +380,7 @@
 }
 .gold_block {
   display: flex;
+  max-width: 180px;
   height: 120px;
   padding: 16px;
   flex-direction: column;
@@ -1343,7 +1346,7 @@ button[disabled] {
     linear-gradient(302deg, #1c1c1e 0%, #48484a 100%)
   );
   width: 128px;
-  height: 96px;
+  min-height: 96px;
   flex-shrink: 0;
   padding: 8px;
   display: flex;
@@ -1358,7 +1361,6 @@ button[disabled] {
     linear-gradient(302deg, #1c1c1e 0%, #48484a 100%)
   );
   width: 118px;
-  height: 86px;
   flex-shrink: 0;
   padding: 8px;
   display: flex;
@@ -1373,6 +1375,22 @@ button[disabled] {
 .no_border {
   border: none;
 }
+
+.mail_content {
+  color: white;
+  font-size: 13px;
+  padding: 8px;
+  letter-spacing: -1px;
+  line-height: 19px;
+  background: var(
+    --Gray-gradient,
+    linear-gradient(302deg, #161617 0%, #2b2b2c 100%)
+  );
+  border-radius: 12px;
+  border-start-start-radius: 0px;
+  border-end-start-radius: 0px;
+}
+
 #pochta {
   width: 128px;
   height: 96px;
@@ -1470,15 +1488,17 @@ button[disabled] {
   align-items: center;
 }
 .review_images > img {
-  width: 56px;
-  height: 56px;
-  border-radius: 16px;
+  object-fit: cover;
+  width: 100px;
+  height: 100px;
+  border-radius: 8px;
   margin-right: 8px;
 }
 .review_avatar {
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
   border-radius: 30px;
+  object-fit: cover;
 }
 .review_date {
   color: var(--label-color-dark-secondary, rgba(235, 235, 245, 0.6));

@@ -15,13 +15,6 @@ function ReviewCarousel() {
     month: "long",
     day: "numeric",
   };
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     if (swiper) {
-  //       swiper.translateTo(-100, 200, false, false);
-  //     }
-  //   }, 1000)
-  // });
 
   useEffect(() => {
     fetch("https://pop.applepodsblack.ru/api/reviews?populate=deep")
@@ -49,7 +42,13 @@ function ReviewCarousel() {
             <SwiperSlide>
               <div className="review">
                 <div className="review_header">
-                  <div style={{ display: "flex", flexDirection: "row", alignItems: 'center' }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "center",
+                    }}
+                  >
                     <img
                       className="review_avatar"
                       src={
@@ -83,13 +82,18 @@ function ReviewCarousel() {
         <p>Отзывы о нашем магазине</p>
       </div>
       <div>
-        <Swiper modules={[FreeMode]} freeMode={true} onSwiper={(s)=> setSwiper(s)}>
+        <Swiper
+          modules={[FreeMode]}
+          freeMode={true}
+          onSwiper={(s) => setSwiper(s)}
+        >
           {review}
         </Swiper>
-        
-        </div>
+      </div>
       <div id="review_button_div">
-        <button class="leave_review" onClick={()=> tg.sendData('comment')}>Оставить отзыв</button>
+        <a class="leave_review" href="https://t.me/applepods_black_otzivi">
+          Посмотреть все отзывы
+        </a>
       </div>
     </div>
   );

@@ -21,7 +21,11 @@ function TeletypeCarousel() {
           buffer.push(
             <SwiperSlide>
               <div
-                className={window.innerWidth < 420 ? 'teletype_block_small' : 'teletype_block'}
+                className={
+                  window.innerWidth < 420
+                    ? "teletype_block_small"
+                    : "teletype_block"
+                }
                 onClick={() => {
                   tg.openLink(`${elem.attributes.link}`, {
                     try_instant_view: true,
@@ -39,13 +43,7 @@ function TeletypeCarousel() {
         setSlides(buffer);
       });
   }, []);
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     if (swiper && slides.length >= 4) {
-  //       swiper.translateTo(-100, 200, false, false);
-  //     }
-  //   }, 1000);
-  // }, [slides]);
+
   return (
     <div id="teletype_carousel_div">
       <div></div>

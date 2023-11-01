@@ -21,26 +21,12 @@ function QuadroBlocks() {
     setAmount(window.GlobalShoppingCart.length);
     setSale(window.GlobalSale);
   });
-  // useEffect(() => {
-  //   fetch("https://pop.applepodsblack.ru/api/discounts")
-  //     .then((response) => response.json())
-  //     .then(function (commits) {
-  //       let data = commits.data;
-  //       let buffer = [];
-  //       for (let elem of data) {
-  //         buffer.push(elem.attributes.quantity);
-  //         buffer.push(elem.attributes.percent);
-  //       }
-  //       let quantity = [];
-  //       for (let i = 0; i < buffer.length; i += 2) quantity.push();
-  //       for (let elem of quantity.reverse()) if (window.GlobalShoppingCart.length >= elem) {setSale(buffer.index(elem) + 1); break}
-  //     });
-  // });
   return (
     <div className="quadro_blocks_main">
       <div className="quadro_blocks" style={{ paddingLeft: "8px" }}>
-        <a href="#" onClick={() => navigate("/tracking")}>
-          <div className="gray_block">
+        {/* <a href="#" onClick={() => navigate("/tracking")}> */}
+        <a>
+          <div className="gray_block" style={{ opacity: "0.5" }}>
             <div className="inner_arrow_text">
               <p>Доставка</p>
               <svg
@@ -61,11 +47,13 @@ function QuadroBlocks() {
             <p class="gray_block_description">Узнать, когда придет посылка</p>
           </div>
         </a>
-        <a onClick={() => {
-                  tg.openLink(`${faqlink}`, {
-                    try_instant_view: true,
-                  });
-                }}>
+        <a
+          onClick={() => {
+            tg.openLink(`${faqlink}`, {
+              try_instant_view: true,
+            });
+          }}
+        >
           <div className="gray_block">
             <div className="inner_arrow_text">
               <p>FAQ</p>

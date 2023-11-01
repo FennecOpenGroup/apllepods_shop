@@ -47,7 +47,12 @@ function MainPage() {
       setNotification(<HeaderNotification />);
   });
   return (
-    <div id="main">
+    <div
+      id="main"
+      style={{
+        maxWidth: "500px",
+      }}
+    >
       {notification}
       <Suspense fallback={<div></div>}>
         <HeaderCarousel />
