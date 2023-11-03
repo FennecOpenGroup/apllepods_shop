@@ -25,10 +25,10 @@ function QuadroBlocks() {
     <div className="quadro_blocks_main">
       <div className="quadro_blocks" style={{ paddingLeft: "8px" }}>
         {/* <a href="#" onClick={() => navigate("/tracking")}> */}
-        <a>
-          <div className="gray_block" style={{ opacity: "0.5" }}>
+        <a href="https://t.me/applepods_black_otzivi">
+          <div className="gray_block" >
             <div className="inner_arrow_text">
-              <p>Доставка</p>
+              <p>Отзывы</p>
               <svg
                 width="17"
                 height="16"
@@ -44,7 +44,7 @@ function QuadroBlocks() {
                 />
               </svg>
             </div>
-            <p class="gray_block_description">Узнать, когда придет посылка</p>
+            <p class="gray_block_description">Просмотреть все отзывы</p>
           </div>
         </a>
         <a

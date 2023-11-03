@@ -1,4 +1,3 @@
-import { FreeMode } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useSwiper } from "swiper/react";
 import DropDown from "./dropDown";
@@ -10,6 +9,10 @@ import tutorial from "./../images/tutorial.MP4";
 import close from "./../images/Close.svg";
 import "swiper/css";
 import "swiper/css/free-mode";
+import 'swiper/css/navigation';
+
+// import required modules
+import { Navigation } from 'swiper/modules';
 function ProductCarousel() {
   const swiperIns = useSwiper();
   const [carouselInfo, setCarouselInfo] = useState([
@@ -18,15 +21,14 @@ function ProductCarousel() {
     ["url", "url"],
   ]);
   let swiper = null;
-  const [variants, setVariants] = useState("hsda");
-  const [watchVar, setWatchVar] = useState("");
+  const tg = window.Telegram.WebApp;
+  const [variants, setVariants] = useState("");
   const [info, setInfo] = useState("информация о продукте");
   // const [swiper, setSwiper] = useState(null);
   const [carousel, setCarousel] = useState("");
-  const [slider, setSlider] = useState("");
+  const [teletype, setTeletype] = useState("");
   const [price, setPrice] = useState(0);
   const [currency, setCurrency] = useState("RUB");
-  const [story, setStory] = useState(null);
   const [audio, setAudio] = useState("");
   const [curColor, setCurColor] = useState("");
   const [curStrap, setCurStrap] = useState("");
@@ -91,10 +93,47 @@ function ProductCarousel() {
             ></img>
           );
         }
+        let teletype_buffer = [];
+        for (let elem of product.attributes.stories.data) {
+          teletype_buffer.push(
+            <SwiperSlide>
+              <div
+                className={
+                  window.innerWidth < 420
+                    ? "teletype_block_small"
+                    : "teletype_block"
+                }
+                onClick={() => {
+                  tg.openLink(`${elem.attributes.link}`, {
+                    try_instant_view: true,
+                  });
+                }}
+              >
+                <img
+                  src={
+                    "https://pop.applepodsblack.ru/" +
+                    elem.attributes.photo.data[0].attributes.url
+                  }
+                  style={{
+                    position: "absolute",
+                    top: "0",
+                    left: "0",
+                    objectFit: "cover",
+                    width: "inherit",
+                    height: "inherit",
+                    zIndex: "-1",
+                    borderRadius: "16px",
+                  }}
+                ></img>
+                <div>
+                  <p>{elem.attributes.name}</p>
+                </div>
+              </div>
+            </SwiperSlide>
+          );
+        }
         if (product.attributes.category == "headphones") {
           let audio_buff = [];
-          let stories_buff = [];
-          let counter = 0;
           audio_buff.push(
             <div className="audio_div">
               <audio
@@ -106,40 +145,10 @@ function ProductCarousel() {
               ></audio>
             </div>
           );
-          for (let story of product.attributes.information.data) {
-            stories_buff.push(
-              <SwiperSlide>
-                <div
-                  className="story_block"
-                  onClick={() => {
-                    setStory(
-                      // <p onClick={() => setStory(null)}>закрыть</p>
-                      <div id="video_story_back">
-                        <img id="video_story_close" src={close} onClick={() => setStory(null)}></img>
-                        <video
-                          className="video_guide_story"
-                          
-                          src={
-                            "https://pop.applepodsblack.ru/" +
-                            story.attributes.url
-                          }
-                          autoPlay
-                        ></video>
-                      </div>
-                    );
-                  }}
-                >
-                  <div className="story_products">
-                    <p>{story.attributes.name}</p>
-                  </div>
-                </div>
-              </SwiperSlide>
-            );
-          }
           setAudio(audio_buff);
-          setSlider(stories_buff);
         }
         window.GlobalWatchColor = "";
+        setTeletype(teletype_buffer);
         setVariants(vars);
         setCarousel(carousel);
         console.log(urls.length);
@@ -159,8 +168,9 @@ function ProductCarousel() {
             swiper = s;
           }}
           slidesPerView={1}
-          modules={[FreeMode]}
-          freeMode={true}
+          modules={[Navigation]}
+          navigation={true}
+          allowTouchMove={false}
         >
           {carousel}
         </Swiper>
@@ -198,24 +208,17 @@ function ProductCarousel() {
         ) : (
           ""
         )}
-        {story}
-        <div id="info_dropdown">
-          <DropDown content={info} header={"Описание"}></DropDown>
-        </div>
         {window.GlobalProductCategory == "accessories" ? (
           ""
-        ) : window.GlobalProductCategory == "watch" ||
-          window.GlobalProductCategory == "dyson" ? (
-          <div id="stories">
-            <p>Полезная информация</p>
-            <TeletypeCarousel />
-          </div>
         ) : (
           <div id="stories">
             <p>Полезная информация</p>
-            <Swiper slidesPerView={3}>{slider}</Swiper>
+            <Swiper slidesPerView={3}>{teletype}</Swiper>
           </div>
         )}
+        <div id="info_dropdown">
+          <DropDown content={info} header={"Описание"}></DropDown>
+        </div>
 
         <div id="audio_ex">
           {window.GlobalProductCategory == "headphones" ? (

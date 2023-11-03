@@ -1,10 +1,10 @@
-import { FreeMode } from "swiper/modules";
+import { FreeMode, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useEffect } from "react";
 import { useState } from "react";
+import tree from "./../images/tree.jpg";
 import "swiper/css";
-import "swiper/css/free-mode";
-import useWindowDimensions from "./GetDimensions";
+import "swiper/css/navigation";
 function TeletypeCarousel() {
   const [teletype, setTeletype] = useState("teletype_block");
   const [swiper, setSwiper] = useState(null);
@@ -12,7 +12,7 @@ function TeletypeCarousel() {
   const [swiper_mount, setSwiperMount] = useState(null);
   const tg = window.Telegram.WebApp;
   useEffect(() => {
-    fetch("https://pop.applepodsblack.ru/api/stories")
+    fetch("https://pop.applepodsblack.ru/api/stories?populate=deep")
       .then((response) => response.json())
       .then(function (commits) {
         let data = commits.data;
@@ -32,6 +32,24 @@ function TeletypeCarousel() {
                   });
                 }}
               >
+                <img
+                  src={
+                    elem.attributes.photo.data != null
+                      ? "https://pop.applepodsblack.ru/" +
+                        elem.attributes.photo.data.attributes.url
+                      : tree
+                  }
+                  style={{
+                    position: "absolute",
+                    top: "0",
+                    left: "0",
+                    objectFit: "cover",
+                    width: "inherit",
+                    height: "inherit",
+                    zIndex: "-1",
+                    borderRadius: "16px",
+                  }}
+                ></img>
                 <div>
                   <p>{elem.attributes.name}</p>
                 </div>
@@ -48,8 +66,7 @@ function TeletypeCarousel() {
     <div id="teletype_carousel_div">
       <div></div>
       <Swiper
-        modules={[FreeMode]}
-        freeMode={true}
+        modules={[Navigation]}
         slidesPerView={3}
         height={255}
         onSwiper={(s) => {
@@ -57,6 +74,7 @@ function TeletypeCarousel() {
           setSwiperMount(true);
           console.log(s);
         }}
+        allowTouchMove={false}
       >
         {slides}
       </Swiper>
