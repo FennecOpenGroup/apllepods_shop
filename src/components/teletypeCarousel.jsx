@@ -58,7 +58,7 @@ function TeletypeCarousel() {
           );
         }
 
-        setSlides(buffer);
+        setSlides(buffer.splice(0, 3));
       });
   }, []);
 
@@ -66,7 +66,6 @@ function TeletypeCarousel() {
     <div id="teletype_carousel_div">
       <div></div>
       <Swiper
-        modules={[Navigation]}
         slidesPerView={3}
         height={255}
         onSwiper={(s) => {
