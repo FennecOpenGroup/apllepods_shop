@@ -67,8 +67,11 @@ function ShoppingCart() {
         let cart_names = [];
         for (let i = 0; i < window.GlobalShoppingCart.length; i++) {
           let product = "";
+          window.GlobalAccessoriesCount = 0;
           for (let elem of data) {
             if (elem.id == store[i]) product = elem;
+            if (product.attributes.category == "accessories")
+              window.GlobalAccessoriesCount += 1;
           }
           buffer.set(
             <div className="cart_card">
@@ -103,6 +106,7 @@ function ShoppingCart() {
           );
           cart_names.push(product.attributes.name);
         }
+
         window.GlobalCartNames = cart_names;
         sum_arr = Array.from(buffer.values());
         for (let elem of sum_arr) sum += elem;
@@ -144,7 +148,10 @@ function ShoppingCart() {
   useEffect(() => {
     let sale_num = 0;
     for (let elem of Array.from(sale.keys()).sort().reverse()) {
-      if (window.GlobalShoppingCart.length >= elem) {
+      if (
+        window.GlobalShoppingCart.length - window.GlobalAccessoriesCount >=
+        elem
+      ) {
         window.GlobalSale = sale.get(elem);
         sale_num = Math.ceil(summary * (sale.get(elem) / 100));
         setSaleSum(sale_num);
