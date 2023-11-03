@@ -32,6 +32,7 @@ function MailtypePage() {
             marginBottom: "20px",
             background: "#161617",
             borderRadius: "12px",
+            height: "130px",
           }}
         >
           <div
@@ -48,7 +49,7 @@ function MailtypePage() {
               console.log(border);
               if (border[0] != "border")
                 setBorder(["border", "no_border", "no_border", "no_border"]);
-              window.GlobalPost = "сдэк";
+              window.GlobalPost = "сдэк (СДЭК)";
             }}
           >
             <p>СДЭК</p>
@@ -67,6 +68,7 @@ function MailtypePage() {
             marginBottom: "20px",
             background: "#161617",
             borderRadius: "12px",
+            height: "130px",
           }}
         >
           <div
@@ -105,6 +107,7 @@ function MailtypePage() {
             marginBottom: "20px",
             background: "#161617",
             borderRadius: "12px",
+            height: "130px",
           }}
         >
           <div

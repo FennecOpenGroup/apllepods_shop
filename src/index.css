@@ -318,10 +318,11 @@
   letter-spacing: -0.5px;
 }
 .gray_block {
-  max-width: 180px;
+  width: 90%;
   display: flex;
   height: 120px;
   padding: 16px;
+  margin: 0px;
   flex-direction: column;
   cursor: pointer;
   justify-content: space-between;
@@ -366,6 +367,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
   padding: 0px;
 }
 
@@ -376,7 +378,7 @@
 }
 .gold_block {
   display: flex;
-  max-width: 180px;
+  width: 90%;
   height: 120px;
   padding: 16px;
   flex-direction: column;
@@ -1374,9 +1376,8 @@ button[disabled] {
 
 .mail_content {
   color: white;
-  font-size: 13px;
+  font-size: 14px;
   padding: 8px;
-  letter-spacing: -1px;
   line-height: 19px;
   background: var(
     --Gray-gradient,
