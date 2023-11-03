@@ -27,24 +27,39 @@ function OformitPage() {
     let last_name = values.last_name;
     let first_name = values.first_name;
     let phone = number;
-    let pochta = "сдэк";
+    let index = values.index;
     let name = values.adress;
     let result = "";
     let a = "";
     for (let i = 0; i < window.GlobalProductColors.length; i++) {
       a += `название ${window.GlobalCartNames[i]}  цвета ${window.GlobalProductColors[i]} \n`;
     }
-    result = `Здравствуйте , хочу сделать заказ! 
-Мои данные для заказа:
-ФИО: ${first_name} ${last_name}
-ТЕЛЕФОН: ${phone}
-АДРЕС: ${name}
-ДОСТАВКА: ${window.GlobalPost}
-СУММА: ${window.GlobalSum}
-ТОВАРЫ: 
-${a}
+    result =
+      window.GlobalPost === "почта России" ||
+      window.GlobalPost === "почта по миру"
+        ? `Здравствуйте , хочу сделать заказ! 
+    Мои данные для заказа:
+    ФИО: ${first_name} ${last_name}
+    ТЕЛЕФОН: ${phone}
+    АДРЕС: ${name}
+    ДОСТАВКА: ${window.GlobalPost}
+    ИНДЕКС: ${index}
+    СУММА: ${window.GlobalSum} ₽
+    ТОВАРЫ: 
+    ${a}
 
-Жду от вас обратной связи`;
+    Жду от вас обратной связи`
+        : `Здравствуйте , хочу сделать заказ! 
+    Мои данные для заказа:
+    ФИО: ${first_name} ${last_name}
+    ТЕЛЕФОН: ${phone}
+    АДРЕС: ${name}
+    ДОСТАВКА: ${window.GlobalPost}
+    СУММА: ${window.GlobalSum} ₽
+    ТОВАРЫ: 
+    ${a}
+
+    Жду от вас обратной связи`;
     window.GlobalDetails = result;
     console.log(result);
     navigate("/copy");
@@ -60,13 +75,24 @@ ${a}
   backButton.show();
   backButton.onClick(back_page);
 
-  const initialValues = {
-    last_name: "",
-    first_name: "",
-    phone: "",
-    pochta: "сдэк",
-    adress: "",
-  };
+  const initialValues =
+    window.GlobalPost === "почта России" ||
+    window.GlobalPost === "почта по миру"
+      ? {
+          last_name: "",
+          first_name: "",
+          phone: "",
+          pochta: "сдэк (СДЭК)",
+          index: "",
+          adress: "",
+        }
+      : {
+          last_name: "",
+          first_name: "",
+          phone: "",
+          pochta: "сдэк (СДЭК)",
+          adress: "",
+        };
   useEffect(() => {
     if (width <= 410) setBlock("cdek_small");
     else setBlock("cdek");
@@ -144,7 +170,7 @@ ${a}
                       inputStyle={{
                         color: "white",
                         backgroundColor: "transparent",
-                        width: "100%",
+                        width: "90%",
                         height: "40px",
                       }}
                       dropdownStyle={{
@@ -162,7 +188,6 @@ ${a}
                       style={{ padding: "5px 0px" }}
                       type="number"
                       id="phone"
-                      w="100%"
                     />
                     {form.errors.phone && (
                       <label style={{ color: "red" }}>
@@ -184,6 +209,32 @@ ${a}
                 <p style={{ padding: "0px", marginTop: "15px" }}>
                   Введите полный адрес с индексом, ЗАПОЛНЯТЬ ЛАТИНИЦЕЙ
                 </p>
+              )}
+              {(window.GlobalPost === "почта по миру" ||
+                window.GlobalPost === "почта России") && (
+                <Field name="index">
+                  {({ field, form }) => (
+                    <FormControl
+                      isRequired
+                      isInvalid={!!form.values.index && !!form.errors.index}
+                      maxH="350px"
+                    >
+                      <input
+                        {...field}
+                        placeholder="Введите индекс"
+                        className="gray_input"
+                        type="text"
+                        id="index"
+                        w="100%"
+                      />
+                      {form.errors.index && (
+                        <label style={{ color: "red" }}>
+                          {form.errors.index}
+                        </label>
+                      )}
+                    </FormControl>
+                  )}
+                </Field>
               )}
 
               <Field name="adress">
