@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "./static/css/main.968663b0.css",
-    "main.js": "./static/js/main.27413375.js",
+    "main.js": "./static/js/main.2849561c.js",
     "static/js/853.49a3c97e.chunk.js": "./static/js/853.49a3c97e.chunk.js",
     "static/css/223.9fd776ac.chunk.css": "./static/css/223.9fd776ac.chunk.css",
     "static/js/223.3a72a109.chunk.js": "./static/js/223.3a72a109.chunk.js",
@@ -10,7 +10,7 @@
     "static/js/695.a29b8b91.chunk.js": "./static/js/695.a29b8b91.chunk.js",
     "static/js/525.24d01801.chunk.js": "./static/js/525.24d01801.chunk.js",
     "static/js/664.71d7cf3e.chunk.js": "./static/js/664.71d7cf3e.chunk.js",
-    "static/media/tutorial.MP4": "./static/media/tutorial.315b77404a413c63ee71.MP4",
+    "static/media/tutorial.MP4": "./static/media/tutorial.4a9485e9f5ee15e11d23.MP4",
     "static/media/SFProText-Regular.ttf": "./static/media/SFProText-Regular.90da7ab18293ca42e335.ttf",
     "static/media/SF-Pro-Display-Regular.otf": "./static/media/SF-Pro-Display-Regular.d1f5e6e16dd4f75c3950.otf",
     "static/media/tree.jpg": "./static/media/tree.ada50d5c5851a7c46496.jpg",
@@ -28,7 +28,7 @@
     "static/media/arrow_down.svg": "./static/media/arrow_down.ae0ab623e66b9fd536bb519ffd30e2e0.svg",
     "static/media/arrow_up.svg": "./static/media/arrow_up.95715cc654020c58a7cad1e3e740a2e8.svg",
     "main.968663b0.css.map": "./static/css/main.968663b0.css.map",
-    "main.27413375.js.map": "./static/js/main.27413375.js.map",
+    "main.2849561c.js.map": "./static/js/main.2849561c.js.map",
     "853.49a3c97e.chunk.js.map": "./static/js/853.49a3c97e.chunk.js.map",
     "223.9fd776ac.chunk.css.map": "./static/css/223.9fd776ac.chunk.css.map",
     "223.3a72a109.chunk.js.map": "./static/js/223.3a72a109.chunk.js.map",
@@ -40,6 +40,6 @@
   },
   "entrypoints": [
     "static/css/main.968663b0.css",
-    "static/js/main.27413375.js"
+    "static/js/main.2849561c.js"
   ]
 }
