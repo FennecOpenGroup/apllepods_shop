@@ -19,11 +19,10 @@ function Products() {
   const accessoriesRef = useRef(null);
   const dysonRef = useRef(null);
   useEffect(() => {
-    fetch("https://pop.applepodsblack.ru/api/products?populate=deep")
+    fetch("https://pop.applepodsblack.ru/api/products?populate=deep&pagination[limit]=1000")
       .then((response) => response.json())
       .then(function (commits) {
         let data = commits.data;
-        console.log(commits);
         let buffer_headphones = [];
         let buffer_accessories = [];
         let buffer_watches = [];

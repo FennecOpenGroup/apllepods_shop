@@ -36,7 +36,7 @@ function ProductCarousel() {
     swiper.slideTo(ind);
   }
   useEffect(() => {
-    fetch("https://pop.applepodsblack.ru/api/products?populate=deep")
+    fetch("https://pop.applepodsblack.ru/api/products?populate=deep&pagination[limit]=1000")
       .then((response) => response.json())
       .then(function (commits) {
         let data = commits.data;
@@ -140,7 +140,7 @@ function ProductCarousel() {
                 controls
                 src={
                   "https://pop.applepodsblack.ru/" +
-                  product.attributes.audio.data[1].attributes.url
+                  product.attributes.audio.data[0].attributes.url
                 }
               ></audio>
             </div>

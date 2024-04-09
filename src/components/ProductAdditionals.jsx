@@ -15,7 +15,7 @@ function ProductAdditionals() {
   ]);
   const [chars, setChars] = useState("");
   useEffect(() => {
-    fetch("https://pop.applepodsblack.ru/api/products?populate=deep")
+    fetch("https://pop.applepodsblack.ru/api/products?populate=deep&pagination[limit]=1000")
       .then((response) => response.json())
       .then(function (commits) {
         let data = commits.data;
